@@ -20,10 +20,12 @@ const flags = parseArgs(Deno.args, {
 });
 
 if (flags.help) {
-  console.log(`JSON5 Server ${denoJson.version}
-    
+  console.log(`JSON Server ${denoJson.version}
+
+  Serves .json, .json5, .jsonc files.
+
 Usage:
-  json5-server [options]
+  json-server [options]
 
 Options:
   --host <hostname>   Host to listen on (default: ${DEFAULT_HOST})
@@ -146,7 +148,7 @@ export async function handler(req: Request, serveDir: string): Promise<Response>
       for await (const dirEntry of Deno.readDir(serveDir)) {
         if (
           dirEntry.isFile &&
-          (dirEntry.name.endsWith(".json5") || dirEntry.name.endsWith(".json"))
+          (dirEntry.name.endsWith(".json5") || dirEntry.name.endsWith(".jsonc") || dirEntry.name.endsWith(".json"))
         ) {
           files.push(dirEntry.name);
         }
@@ -159,7 +161,7 @@ export async function handler(req: Request, serveDir: string): Promise<Response>
           <!DOCTYPE html>
           <html>
             <head>
-              <title>JSON/JSON5 Files</title>
+              <title>JSON Files</title>
               <style>${commonStyles}</style>
             </head>
             <body>${htmlBody}</body>
@@ -239,5 +241,5 @@ if (import.meta.main) {
     { port, hostname: flags.host }
   );
   console.log(`Server running on http://${flags.host}:${port}/`);
-  console.log(`Serving JSON5 files from: ${serveDir}`);
+  console.log(`Serving JSON files from: ${serveDir}`);
 }

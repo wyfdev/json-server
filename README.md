@@ -1,6 +1,6 @@
-# JSON5 Server
+# JSON Server
 
-A simple Deno HTTP server to serve `.json` and `.json5` files.
+A simple Deno HTTP server to serve `.json`, `.json5` and `.jsonc` files.
 
 ## Installation
 
@@ -18,5 +18,5 @@ deno task start
 ### Options
 Use the `--help` flag to see all available options:
 ```bash
-json5-server --help
+json-server --help
 ```

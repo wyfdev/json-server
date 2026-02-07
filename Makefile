@@ -1,7 +1,7 @@
 # Makefile for the json5-server project
 
 # Variables
-APP_NAME = json5-server
+APP_NAME = json-server
 HOST = localhost
 PORT = 8000
 DIR = .
